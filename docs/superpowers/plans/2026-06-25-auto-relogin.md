@@ -15,7 +15,7 @@
 - Detection predicate stays narrow: `status_code == 2483` OR `status_msg` contains `请先登录`.
 - Retry at most once; never loop. Non-interactive environments (`--serve`, no TTY) must NOT auto-launch a browser.
 - Shared files (`core/api_client.py`, `core/__init__.py`, `tools/cookie_fetcher.py`) must stay byte-identical between `douyin-downloader` (CLI) and `douyin-downloader-desktop`. CLI-only files: `cli/login_flow.py`, `cli/main.py`.
-- CLI repo root: `/Users/crimson/codes/douyin/douyin-downloader`. Desktop repo root: `/Users/crimson/codes/douyin/douyin-downloader-desktop`. Run tests with `.venv/bin/python -m pytest`.
+- CLI repo root: `~/codes/douyin/douyin-downloader`. Desktop repo root: `~/codes/douyin/douyin-downloader-desktop`. Run tests with `.venv/bin/python -m pytest`.
 
 ---
 
@@ -664,7 +664,7 @@ git commit -m "feat(cli): auto-relogin and retry once on expired Douyin session"
 
 ## Task 5: Mirror shared changes into the desktop repo
 
-**Files (desktop repo `/Users/crimson/codes/douyin/douyin-downloader-desktop`):**
+**Files (desktop repo `~/codes/douyin/douyin-downloader-desktop`):**
 - Modify: `core/api_client.py` (identical to CLI Task 1)
 - Modify: `core/__init__.py` (identical to CLI Task 1)
 - Modify: `tools/cookie_fetcher.py` (identical to CLI Task 2)
@@ -684,8 +684,8 @@ This task mirrors detection only; no search code is added to desktop.
 
 Run:
 ```bash
-diff /Users/crimson/codes/douyin/douyin-downloader/core/api_client.py /Users/crimson/codes/douyin/douyin-downloader-desktop/core/api_client.py
-diff /Users/crimson/codes/douyin/douyin-downloader/tools/cookie_fetcher.py /Users/crimson/codes/douyin/douyin-downloader-desktop/tools/cookie_fetcher.py
+diff ~/codes/douyin/douyin-downloader/core/api_client.py ~/codes/douyin/douyin-downloader-desktop/core/api_client.py
+diff ~/codes/douyin/douyin-downloader/tools/cookie_fetcher.py ~/codes/douyin/douyin-downloader-desktop/tools/cookie_fetcher.py
 ```
 Expected: only the Task 1/Task 2 additions show as differences (i.e. the diff is exactly the new blocks). If anything else differs, STOP and reconcile before copying.
 
@@ -701,7 +701,7 @@ Copy `tests/test_api_client_login_required.py` from the CLI repo into the deskto
 
 Run (from desktop root):
 ```bash
-/Users/crimson/codes/douyin/douyin-downloader-desktop/.venv/bin/python -m pytest tests/test_api_client_login_required.py -q
+~/codes/douyin/douyin-downloader-desktop/.venv/bin/python -m pytest tests/test_api_client_login_required.py -q
 ```
 Expected: PASS.
 
@@ -713,16 +713,16 @@ Confirm by reading `server/jobs.py` `JobManager._run` that its `except Exception
 
 Run:
 ```bash
-diff /Users/crimson/codes/douyin/douyin-downloader/core/api_client.py /Users/crimson/codes/douyin/douyin-downloader-desktop/core/api_client.py && echo IDENTICAL
-diff /Users/crimson/codes/douyin/douyin-downloader/core/__init__.py /Users/crimson/codes/douyin/douyin-downloader-desktop/core/__init__.py && echo IDENTICAL
-diff /Users/crimson/codes/douyin/douyin-downloader/tools/cookie_fetcher.py /Users/crimson/codes/douyin/douyin-downloader-desktop/tools/cookie_fetcher.py && echo IDENTICAL
+diff ~/codes/douyin/douyin-downloader/core/api_client.py ~/codes/douyin/douyin-downloader-desktop/core/api_client.py && echo IDENTICAL
+diff ~/codes/douyin/douyin-downloader/core/__init__.py ~/codes/douyin/douyin-downloader-desktop/core/__init__.py && echo IDENTICAL
+diff ~/codes/douyin/douyin-downloader/tools/cookie_fetcher.py ~/codes/douyin/douyin-downloader-desktop/tools/cookie_fetcher.py && echo IDENTICAL
 ```
 Expected: three `IDENTICAL` lines.
 
 - [ ] **Step 7: Commit (in desktop repo, with repo-local jiji262 identity)**
 
 ```bash
-cd /Users/crimson/codes/douyin/douyin-downloader-desktop
+cd ~/codes/douyin/douyin-downloader-desktop
 git config user.name jiji262
 git config user.email jiguofei@msn.com
 git add core/api_client.py core/__init__.py tools/cookie_fetcher.py tests/test_api_client_login_required.py

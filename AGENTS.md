@@ -43,7 +43,7 @@ A Python-based Douyin (TikTok China) batch downloader that fetches videos, galle
 - The `mix`/`allmix` config alias system requires special handling (see `config/config_loader.py`)
 
 ### Shared Logic With Desktop
-- This project shares Python backend logic with `/Users/crimson/codes/douyin/douyin-downloader-desktop`.
+- This project shares Python backend logic with `~/codes/douyin/douyin-downloader-desktop`.
 - When fixing shared logic in `auth/`, `cli/`, `config/`, `control/`, `core/`, `storage/`, `tools/`, `utils/`, or shared tests, apply the equivalent fix in both projects unless the difference is explicitly desktop-only or CLI-only.
 - Before finishing a shared-logic fix, compare the touched shared files against the sibling project and either keep them identical or document the intentional divergence.
 - **Sync script:** `../douyin-downloader-desktop/scripts/sync-to-cli.sh` copies all shared files from the desktop project here. Run `--check` to detect drift.

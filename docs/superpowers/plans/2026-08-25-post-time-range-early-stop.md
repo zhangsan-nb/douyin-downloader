@@ -41,9 +41,9 @@ Before editing, invoke `superpowers:using-git-worktrees`; while coding, apply th
 Use `superpowers:using-git-worktrees` for this step, then run:
 
 ```bash
-git -C /Users/crimson/codes/douyin/douyin-downloader-desktop worktree list --porcelain
-git -C /Users/crimson/codes/douyin/douyin-downloader-desktop branch --list codex/post-time-range-early-stop
-git -C /Users/crimson/codes/douyin/douyin-downloader-desktop worktree add /Users/crimson/codes/douyin/.worktrees/douyin-downloader-desktop-post-time-range-early-stop -b codex/post-time-range-early-stop main
+git -C ~/codes/douyin/douyin-downloader-desktop worktree list --porcelain
+git -C ~/codes/douyin/douyin-downloader-desktop branch --list codex/post-time-range-early-stop
+git -C ~/codes/douyin/douyin-downloader-desktop worktree add ~/codes/douyin/.worktrees/douyin-downloader-desktop-post-time-range-early-stop -b codex/post-time-range-early-stop main
 ```
 
 Expected: the new Desktop worktree is clean and does not include unrelated uncommitted Telegram changes from the main checkout. If the branch/worktree already exists, reuse the listed path instead of running the add command again.
@@ -653,16 +653,16 @@ tests/test_post_time_pagination.py
 
 - [ ] **Step 2: Validate the sync script and byte parity**
 
-Run from `/Users/crimson/codes/douyin/.worktrees/douyin-downloader-desktop-post-time-range-early-stop`:
+Run from `~/codes/douyin/.worktrees/douyin-downloader-desktop-post-time-range-early-stop`:
 
 ```bash
 bash -n scripts/sync-to-cli.sh
 python -m pytest -q tests/test_sync_to_cli_script.py
-cmp core/downloader_base.py /Users/crimson/codes/douyin/.worktrees/douyin-downloader-post-time-range-early-stop/core/downloader_base.py
-cmp core/user_modes/post_strategy.py /Users/crimson/codes/douyin/.worktrees/douyin-downloader-post-time-range-early-stop/core/user_modes/post_strategy.py
-cmp core/user_modes/post_time_boundary.py /Users/crimson/codes/douyin/.worktrees/douyin-downloader-post-time-range-early-stop/core/user_modes/post_time_boundary.py
-cmp tests/test_time_range_filter.py /Users/crimson/codes/douyin/.worktrees/douyin-downloader-post-time-range-early-stop/tests/test_time_range_filter.py
-cmp tests/test_post_time_pagination.py /Users/crimson/codes/douyin/.worktrees/douyin-downloader-post-time-range-early-stop/tests/test_post_time_pagination.py
+cmp core/downloader_base.py ~/codes/douyin/.worktrees/douyin-downloader-post-time-range-early-stop/core/downloader_base.py
+cmp core/user_modes/post_strategy.py ~/codes/douyin/.worktrees/douyin-downloader-post-time-range-early-stop/core/user_modes/post_strategy.py
+cmp core/user_modes/post_time_boundary.py ~/codes/douyin/.worktrees/douyin-downloader-post-time-range-early-stop/core/user_modes/post_time_boundary.py
+cmp tests/test_time_range_filter.py ~/codes/douyin/.worktrees/douyin-downloader-post-time-range-early-stop/tests/test_time_range_filter.py
+cmp tests/test_post_time_pagination.py ~/codes/douyin/.worktrees/douyin-downloader-post-time-range-early-stop/tests/test_post_time_pagination.py
 ```
 
 Expected: all commands exit 0. Do not run the hard-coded `--check` against the dirty main CLI checkout; paired-worktree `cmp` is the approved equivalent for this branch.
